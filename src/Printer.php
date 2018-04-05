@@ -52,7 +52,7 @@ class SolanoLabs_PHPUnit_Printer extends PHPUnit_TextUI_ResultPrinter
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addError(PHPUnit_Framework_Test $test, \Throwable $t, float $time)
+    public function addError(PHPUnit_Framework_Test $test, \Throwable $t, float $time): void
     {
         $this->writeProgressWithColor('fg-red, bold', 'ERROR');
         $this->lastTestFailed = true;
