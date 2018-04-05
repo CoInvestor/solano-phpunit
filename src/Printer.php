@@ -52,7 +52,7 @@ class SolanoLabs_PHPUnit_Printer extends PHPUnit_TextUI_ResultPrinter
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addError(PHPUnit_Framework_Test $test, \Throwable $e, $time)
     {
         $this->writeProgressWithColor('fg-red, bold', 'ERROR');
         $this->lastTestFailed = true;
@@ -100,7 +100,7 @@ class SolanoLabs_PHPUnit_Printer extends PHPUnit_TextUI_ResultPrinter
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addIncompleteTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addIncompleteTest(PHPUnit_Framework_Test $test, \Throwable $e, $time)
     {
         $this->writeProgressWithColor('fg-yellow, bold', 'INCOMPLETE');
         $this->lastTestFailed = true;
@@ -116,7 +116,7 @@ class SolanoLabs_PHPUnit_Printer extends PHPUnit_TextUI_ResultPrinter
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addRiskyTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addRiskyTest(PHPUnit_Framework_Test $test, \Throwable $e, $time)
     {
         $this->writeProgressWithColor('fg-yellow, bold', 'RISKY');
         $this->lastTestFailed = true;
@@ -132,7 +132,7 @@ class SolanoLabs_PHPUnit_Printer extends PHPUnit_TextUI_ResultPrinter
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addSkippedTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addSkippedTest(PHPUnit_Framework_Test $test, \Throwable $e, $time)
     {
         // PHPUnit will skip a test without "starting" or "ending" it if a dependency isn't being met.
         if ($test->getName() != $this->lastTestName) {
