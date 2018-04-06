@@ -203,7 +203,7 @@ public function endTest(\PHPUnit\Framework\Test $test, float $time): void
      * @param  string $buffer
      * @return string
      */
-    protected function formatWithColor($color, $buffer)
+    protected function formatWithColor($color, $buffer): string
     {
         if (!$this->colors) {
             return $buffer;
@@ -230,7 +230,7 @@ public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     /**
      * @param string $buffer
      */
-    public function write($buffer)
+    public function write(string $buffer): void
     {
         if ($this->out) {
             fwrite($this->out, $buffer);
