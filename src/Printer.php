@@ -158,7 +158,7 @@ class SolanoLabs_PHPUnit_Printer extends ResultPrinter
         $this->write(
             sprintf(
                 "\nStarting test '%s'.\n",
-                PHPUnit_Util_Test::describe($test)
+                PHPUnit_Util_Test::describe($test)[1]
             )
         );
         $this->lastTestName = $test->getName();
