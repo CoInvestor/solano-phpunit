@@ -67,7 +67,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      *
      * @param PHPUnit_Framework_Test $test
      */
-    public function startTest(PHPUnit_Framework_Test $test)
+    public function startTest(PHPUnit_Framework_Test $test): void
     {
         if (getenv('TDDIUM')) {
             global $tddium_output_buffer;
@@ -101,7 +101,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param PHPUnit_Framework_Test $test
      * @param float                  $time
      */
-    public function endTest(PHPUnit_Framework_Test $test, $time)
+    public function endTest(PHPUnit_Framework_Test $test, float $time): void
     {
         $testcase = $this->currentTestcase;
         if (!$testcase['status']) {
@@ -126,9 +126,9 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addError(PHPUnit_Framework_Test $test, \Throwable $t, float $time): void
     {   
-        $this->addNonPassTest('error', $test, $e, $time);
+        $this->addNonPassTest('error', $test, $t, $time);
     }
 
     /**
@@ -138,7 +138,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param PHPUnit_Framework_AssertionFailedError $e
      * @param float                                  $time
      */
-    public function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time)
+    public function addFailure(PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, float $time): void
     {
         $this->addNonPassTest('fail', $test, $e, $time);
     }
@@ -150,7 +150,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param PHPUnit_Framework_Warning $e
      * @param float                     $time
      */
-    public function addWarning(PHPUnit_Framework_Test $test, PHPUnit_Framework_Warning $e, $time)
+    public function addWarning(PHPUnit_Framework_Test $test, PHPUnit_Framework_Warning $e, float $time): void
     {
         $this->addNonPassTest('error', $test, $e, $time);
     }
@@ -162,9 +162,9 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addIncompleteTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addIncompleteTest(PHPUnit_Framework_Test $test, \Throwable $t, float $time): void
     {
-        $this->addNonPassTest('skip', $test, $e, $time, 'Incomplete Test: ');
+        $this->addNonPassTest('skip', $test, $t, $time, 'Incomplete Test: ');
     }
 
     /**
@@ -174,9 +174,9 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addRiskyTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addRiskyTest(PHPUnit_Framework_Test $test, \Throwable $t, float  $time): void
     {
-        $this->addNonPassTest('error', $test, $e, $time, 'Risky Test: ');
+        $this->addNonPassTest('error', $test, $t, $time, 'Risky Test: ');
     }
 
     /**
@@ -186,7 +186,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      * @param Exception              $e
      * @param float                  $time
      */
-    public function addSkippedTest(PHPUnit_Framework_Test $test, Exception $e, $time)
+    public function addSkippedTest(PHPUnit_Framework_Test $test, \Throwable $t, float $time): void
     {
         if (count($this->currentTestcase)) {
             $this->addNonPassTest('skip', $test, $e, $time, 'Skipped Test: ');
@@ -229,7 +229,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      *
      * @param PHPUnit_Framework_TestSuite $suite
      */
-    public function startTestSuite(PHPUnit_Framework_TestSuite $suite)
+    public function startTestSuite(PHPUnit_Framework_TestSuite $suite): void
     {
         $this->currentTestSuiteName = $suite->getName();
     }
@@ -239,7 +239,7 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
      *
      * @param PHPUnit_Framework_TestSuite $suite
      */
-    public function endTestSuite(PHPUnit_Framework_TestSuite $suite)
+    public function endTestSuite(PHPUnit_Framework_TestSuite $suite): void  
     {
         $this->currentTestSuiteName = '';
         $this->currentTestSuiteAddress = '';
