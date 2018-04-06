@@ -169,7 +169,7 @@ class SolanoLabs_PHPUnit_Printer extends ResultPrinter
      *
      * @param \PHPUnit\Framework\Test $test
      */
-public function endTest(\PHPUnit\Framework\Test $test): void
+public function endTest(\PHPUnit\Framework\Test $test, float $time): void
     {
         if (!$this->lastTestFailed) {
             $this->writeProgressWithColor('fg-green, bold', 'PASS');
