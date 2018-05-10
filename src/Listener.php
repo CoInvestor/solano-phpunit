@@ -214,13 +214,11 @@ class SolanoLabs_PHPUnit_Listener extends PHPUnit_Util_Printer implements PHPUni
             $this->currentTestcase['stdout'] = $test->getActualOutput();
         }
         $this->currentTestcase['stderr'] = $stderrPrefix . $e->getMessage();
-        $traceback = PHPUnit_Util_Filter::getFilteredStacktrace($e, false);
+        $traceback = $e->getTrace();
         // Strip path from traceback?
-        if(!empty($traceback)) {
-            for($i = 0; $i < count($traceback); $i++) {
-                if (0 === strpos($traceback[$i]['file'], $this->stripPath)) {
-                    $traceback[$i]['file'] = substr($traceback[$i]['file'], strlen($this->stripPath) + 1);
-                }
+        for($i = 0; $i < count($traceback); $i++) {
+            if (0 === strpos($traceback[$i]['file'], $this->stripPath)) {
+                $traceback[$i]['file'] = substr($traceback[$i]['file'], strlen($this->stripPath) + 1);
             }
         }
         $this->currentTestcase['traceback'] = $traceback;
